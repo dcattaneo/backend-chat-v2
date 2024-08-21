@@ -9,6 +9,7 @@ import messageRoutes from './routes/message.routes.js'
 
 const app = express()
 
+
 const allowedOrigins = process.env.NODE_ENV === 'production'
     ? ['https://frontend-chat-v1.vercel.app']
     : ['http://localhost:5173'];
