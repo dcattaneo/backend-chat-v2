@@ -4,7 +4,7 @@ import { createAccessToken } from "../libs/jwt.js";
 
 export const register = async (req, res) => {
     const { username, email, password } = req.body;
-    
+
 
     try {
         const userFound = await User.findOne({ email });
@@ -26,10 +26,11 @@ export const register = async (req, res) => {
 
         const savedUser = await newUser.save();
         const token = await createAccessToken({ id: savedUser._id });
+
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production', // Solo en HTTPS en producción
-            sameSite: 'None', // Necesario para solicitudes cross-site
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Necesario para solicitudes cross-site
         });
 
         res.json({
@@ -55,10 +56,11 @@ export const login = async (req, res) => {
         if (!passwordMatches) return res.status(400).json("Incorrect password");
 
         const token = await createAccessToken({ id: userFound._id });
+
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production', // Solo en HTTPS en producción
-            sameSite: 'None', // Necesario para solicitudes cross-site
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Necesario para solicitudes cross-site
         });
 
         res.json({

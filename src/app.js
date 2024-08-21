@@ -8,9 +8,13 @@ import messageRoutes from './routes/message.routes.js'
 
 
 const app = express()
+
+const allowedOrigins = process.env.NODE_ENV === 'production'
+    ? ['https://frontend-chat-v1.vercel.app']
+    : ['http://localhost:5173'];
 app.use(express.json());
 app.use(cors({
-    origin: 'https://frontend-chat-v1.vercel.app',
+    origin: allowedOrigins,
     credentials: true
 }));
 app.use(morgan("dev"));
@@ -22,3 +26,4 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes)
 app.use("/api/messages", messageRoutes)
 export default app
+
