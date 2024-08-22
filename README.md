@@ -1,4 +1,4 @@
-# backend-chat-v1
+# backend-chat-v2
 
 ### How to run app
 
@@ -11,4 +11,4 @@
 `npm install` Install deps
 
 `npm run dev` Run app# backend-test-2
-# backend-chat-v2
+
