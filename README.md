@@ -10,5 +10,5 @@
 
 `npm install` Install deps
 
-`npm run dev` Run app# backend-test-2
+`npm run dev` Run app
 
