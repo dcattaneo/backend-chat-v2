@@ -1,4 +1,5 @@
 import app from './app.js'
+// import { server } from './socket/socket.js'    // This server wraps app
 import dotenv from "dotenv";
 import { connectDB } from './db.js'
 
